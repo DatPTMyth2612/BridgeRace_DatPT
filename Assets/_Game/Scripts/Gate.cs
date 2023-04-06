@@ -7,20 +7,22 @@ public class Gate : MonoBehaviour
     [SerializeField] private GameObject closegate;
     [SerializeField] private BrickSpawner currentBrickSpawner;
     [SerializeField] private BrickSpawner previousBrickSpawner;
-    [SerializeField] private int currentLevel;
+    [SerializeField] private int currentGround;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             Character playerScript = other.GetComponent<Character>();
-            playerScript.currentLevel = currentLevel;
+            playerScript.currentGround = currentGround;
             Enemy enemyScript = other.GetComponent<Enemy>();
+            closegate.SetActive(false);
+            Invoke(nameof(CloseGate), 0.5f);
             if (enemyScript != null)
             {
-                enemyScript.currentLevel = currentLevel;
+                enemyScript.currentGround = currentGround;
                 enemyScript.SwitchState(enemyScript.SeekBrickState);
+                Debug.Log(currentGround);
             }
-            Invoke(nameof(CloseGate), 0.5f);
             foreach (GameObject brick in currentBrickSpawner.bricks)
             {
                 if (brick.GetComponent<Brick>().brickColor == other.GetComponent<Character>().characterColor)

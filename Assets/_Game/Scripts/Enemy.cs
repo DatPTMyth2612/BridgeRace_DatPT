@@ -9,20 +9,20 @@ public class Enemy : Character
     public NavMeshAgent navMeshAgent;
     public List<Brick> bricks = new List<Brick>();
     public GameObject brickSpawner;
-    //private EndLevel endLevel;
+    private EndLevel endLevel;
     public EnemyBaseState currentState;
     public BuildBridgeState BuildBridgeState = new BuildBridgeState();
     public SeekBrickState SeekBrickState = new SeekBrickState();
     private void Start()
     {
         currentState = SeekBrickState;
-        //endLevel = FindObjectOfType<EndLevel>();
-        //endLevel.OnEndLevelAction += EndGame;
+        endLevel = FindObjectOfType<EndLevel>();
+        endLevel.OnEndLevelAction += EndGame;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
-        //if (gameEnd) return;
+        if (gameEnd) return;
         currentState.UpdateState(this);
     }
     public void SwitchState(EnemyBaseState state)

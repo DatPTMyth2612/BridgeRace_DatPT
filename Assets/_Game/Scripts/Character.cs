@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Character : MonoBehaviour
     public LayerMask stairLayer;
     public ColorData colorData;
     public List<GameObject> collectedBrick = new List<GameObject>();
-    public int currentLevel = 1;
+    public int currentGround = 1;
+    public bool gameEnd;
 
 
     private List<Transform> playerBricks = new List<Transform>();
@@ -21,6 +23,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         OnInit();
+        gameEnd = false;
     }
     public virtual void OnInit()
     {
@@ -76,6 +79,28 @@ public class Character : MonoBehaviour
             Transform playerBrick = playerBricks[index];
             playerBricks.Remove(playerBrick);
             Destroy(playerBrick.gameObject);
+        }
+    }
+    public void ClearBrick()
+    {
+        foreach(Transform playerBrick in playerBricks)
+        {
+            Destroy(playerBrick.gameObject);
+        }
+        playerBricks.Clear();   
+        collectedBrick.Clear();
+    }
+    public void EndGame(Vector3 endLevelPosition)
+    {
+        ClearBrick();
+        gameEnd = true;
+        if (GetComponent<NavMeshAgent>() != null)
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
+        }
+        if (GetComponent<CharacterController>() != null)
+        {
+            GetComponent<CharacterController>().enabled = false;
         }
     }
     public void ChangeColor(int colorNum)

@@ -51,7 +51,7 @@ public class SeekBrickState : EnemyBaseState
     private void CreateBrickList(Enemy enemy)
     {
         enemy.bricks.Clear();
-        enemy.brickSpawner = GameObject.Find("BrickSpawnerGround" + enemy.currentLevel.ToString());
+        enemy.brickSpawner = GameObject.Find("BrickSpawnerGround" + enemy.currentGround.ToString());
         if (enemy.brickSpawner != null)
         {
             for (int i = 0; i < enemy.brickSpawner.transform.childCount - 1; i++)

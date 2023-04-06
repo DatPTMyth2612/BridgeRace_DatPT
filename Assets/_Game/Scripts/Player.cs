@@ -15,6 +15,7 @@ public class Player : Character
     private FloatingJoystick joystick;
     public int randomColorInt;
 
+
     private void Awake()
     {
         ChangeColor();

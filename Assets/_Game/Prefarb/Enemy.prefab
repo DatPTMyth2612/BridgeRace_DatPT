@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8669068201802025239}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -145,7 +145,8 @@ MonoBehaviour:
     m_Bits: 8
   colorData: {fileID: 11400000, guid: 0a1d82976003d564f8ee3469917e0c13, type: 2}
   collectedBrick: []
-  currentLevel: 1
+  currentGround: 1
+  gameEnd: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

@@ -18,7 +18,7 @@ public class BuildBridgeState : EnemyBaseState
     }
     private void MoveToNextLevel(Enemy enemy)
     {
-        int nextLevel = enemy.currentLevel + 1;
+        int nextLevel = enemy.currentGround + 1;
         RaycastHit nextGroundLevel;
         Vector3 targetPosition = enemy.transform.position;
         for (int i = 0; i < 100; i++)
@@ -33,5 +33,6 @@ public class BuildBridgeState : EnemyBaseState
             }
         }
         enemy.navMeshAgent.SetDestination(targetPosition);
+
     }
 }
