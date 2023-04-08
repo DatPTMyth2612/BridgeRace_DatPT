@@ -15,7 +15,7 @@ public class SeekBrickState : EnemyBaseState
     {
         if (enemy.navMeshAgent.remainingDistance < 0.1f)
         {
-            if (enemy.collectedBrick.Count >= 10)
+            if (enemy.collectedBrick.Count >= 7)
             {
                 enemy.SwitchState(enemy.BuildBridgeState);
             }

@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4021f9a0d0a8b4b4d97c51419146000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterbrickPrefab: {fileID: 2253884232732265631, guid: d172b3ff80c63f54f8457a6020829946, type: 3}
+  controller: {fileID: 2079991298848310273}
+  characterbrickPrefab: {fileID: 2079991298848310398}
   brickHolder: {fileID: 2079991298220873643}
   speed: 10
   characterColor: 0
@@ -155,7 +156,9 @@ MonoBehaviour:
   collectedBrick: []
   currentGround: 1
   gameEnd: 0
-  controller: {fileID: 2079991298848310273}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   randomColorInt: 0
 --- !u!143 &2079991298848310273
 CharacterController:

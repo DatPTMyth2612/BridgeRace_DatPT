@@ -22,6 +22,7 @@ public class Enemy : Character
     }
     private void Update()
     {
+        //Time.timeScale = 5f;
         if (gameEnd) return;
         currentState.UpdateState(this);
     }

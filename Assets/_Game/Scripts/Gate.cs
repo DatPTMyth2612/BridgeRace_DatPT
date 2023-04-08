@@ -21,7 +21,6 @@ public class Gate : MonoBehaviour
             {
                 enemyScript.currentGround = currentGround;
                 enemyScript.SwitchState(enemyScript.SeekBrickState);
-                Debug.Log(currentGround);
             }
             foreach (GameObject brick in currentBrickSpawner.bricks)
             {

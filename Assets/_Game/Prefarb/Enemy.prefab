@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterbrickPrefab: {fileID: 2253884232732265631, guid: d172b3ff80c63f54f8457a6020829946, type: 3}
+  Player: {fileID: 0}
   brickHolder: {fileID: 552065026144125714}
   speed: 0
   characterColor: 0

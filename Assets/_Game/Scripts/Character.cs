@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
+    public CharacterController controller;
     public GameObject characterbrickPrefab;
     public Transform brickHolder;
     public float speed = 10.0f;
@@ -19,6 +20,10 @@ public class Character : MonoBehaviour
 
     private List<Transform> playerBricks = new List<Transform>();
 
+    private void Awake()
+    {
+        Time.timeScale = 0f;
+    }
 
     private void Start()
     {
@@ -83,11 +88,8 @@ public class Character : MonoBehaviour
     }
     public void ClearBrick()
     {
-        foreach(Transform playerBrick in playerBricks)
-        {
-            Destroy(playerBrick.gameObject);
-        }
-        playerBricks.Clear();   
+        Destroy(brickHolder.gameObject);
+        playerBricks.Clear();
         collectedBrick.Clear();
     }
     public void EndGame(Vector3 endLevelPosition)
