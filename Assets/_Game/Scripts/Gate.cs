@@ -15,8 +15,11 @@ public class Gate : MonoBehaviour
             Character playerScript = other.GetComponent<Character>();
             playerScript.currentGround = currentGround;
             Enemy enemyScript = other.GetComponent<Enemy>();
-            closegate.SetActive(false);
-            Invoke(nameof(CloseGate), 0.5f);
+            if (other.name == "Player")
+            {
+                Invoke(nameof(CloseGate), 0.5f);
+            }
+
             if (enemyScript != null)
             {
                 enemyScript.currentGround = currentGround;

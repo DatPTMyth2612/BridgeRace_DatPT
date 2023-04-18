@@ -12,10 +12,10 @@ public class EndLevel : MonoBehaviour
     {
         if (other.CompareTag("Character"))
         {
+            other.GetComponent<Character>().isWin = true;
             OnEndLevelAction?.Invoke(transform.position);
             other.transform.position = transform.position;
             other.transform.rotation = Quaternion.Euler(0, 180, 0);
-            Debug.Log(other.name);
             if (other.name == "Player")
             {
                 Win.SetActive(true);

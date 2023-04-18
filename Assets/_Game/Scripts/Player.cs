@@ -9,6 +9,7 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
     public int randomColorInt;
     private Vector3 direction;
     private Vector3 velocity;
@@ -46,9 +47,15 @@ public class Player : Character
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
             controller.Move(direction * speed * Time.deltaTime);
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
 
         RaycastHit ground;
+        Debug.DrawLine(transform.position, Vector3.down, Color.red);
         if (!Physics.Raycast(transform.position, Vector3.down, out ground, 1f, groundLayer))
         {
             velocity.y += gravity * Time.deltaTime;
@@ -63,7 +70,7 @@ public class Player : Character
     {
         randomColorInt = UnityEngine.Random.Range(0, 4);
         ColorData.ColorType color = (ColorData.ColorType)randomColorInt;
-        GetComponent<MeshRenderer>().material = colorData.GetColor(color);
+        CharacterMesh.GetComponent<SkinnedMeshRenderer>().material = colorData.GetColor(color);
         characterColor = color;
     }
 }

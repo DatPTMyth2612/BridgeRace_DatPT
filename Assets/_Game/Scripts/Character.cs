@@ -9,13 +9,16 @@ public class Character : MonoBehaviour
     public CharacterController controller;
     public GameObject characterbrickPrefab;
     public Transform brickHolder;
+    public GameObject CharacterMesh;
     public float speed = 10.0f;
     public ColorData.ColorType characterColor;
+    public Animator animator;
     public LayerMask stairLayer;
     public ColorData colorData;
     public List<GameObject> collectedBrick = new List<GameObject>();
     public int currentGround = 1;
     public bool gameEnd;
+    public bool isWin;
 
 
     private List<Transform> playerBricks = new List<Transform>();
@@ -23,6 +26,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0f;
+        isWin = false;
     }
 
     private void Start()
@@ -73,7 +77,7 @@ public class Character : MonoBehaviour
         int index = playerBricks.Count;
         characterbrickPrefab.GetComponent<MeshRenderer>().material = colorData.GetColor(characterColor);
         Transform playerBrick = Instantiate(characterbrickPrefab.transform, brickHolder);
-        playerBrick.localPosition = Vector3.back * 0.4f + index * 0.5f * Vector3.up;
+        playerBrick.localPosition = Vector3.back * 1f + index * 0.5f * Vector3.up;
         playerBricks.Add(playerBrick);
     }
     public void RemoveBrick()
@@ -96,6 +100,10 @@ public class Character : MonoBehaviour
     {
         ClearBrick();
         gameEnd = true;
+        if (isWin)
+        {
+            animator.SetTrigger("Winning");
+        }
         if (GetComponent<NavMeshAgent>() != null)
         {
             GetComponent<NavMeshAgent>().enabled = false;
@@ -108,7 +116,7 @@ public class Character : MonoBehaviour
     public void ChangeColor(int colorNum)
     {
         ColorData.ColorType color = (ColorData.ColorType)colorNum;
-        GetComponent<MeshRenderer>().material = colorData.GetColor(color);
+        CharacterMesh.GetComponent<SkinnedMeshRenderer>().material = colorData.GetColor(color);
         characterColor = color;
     }
 }

@@ -47,6 +47,7 @@ public class SeekBrickState : EnemyBaseState
     {
         CreateBrickList(enemy);
         enemy.navMeshAgent.SetDestination(GetClosestBrickPosition(enemy));
+        enemy.animator.SetBool("isRunning", true);
     }
     private void CreateBrickList(Enemy enemy)
     {
